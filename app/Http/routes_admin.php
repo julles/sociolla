@@ -1,10 +1,6 @@
 <?php
 Route::group(['prefix' => 'admin-panel'] , function(){
 
-	Route::get('/' , function(){
-
-		return view('admin.welcome');
-
-	});
+	Route::get('/' , 'Admin\DefaultController@index');
 
 });
