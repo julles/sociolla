@@ -12,13 +12,16 @@
             @endif
 
             <div class="table-responsive bs-example widget-shadow">
-                <a style="margin-bottom:10px;" class="btn btn-success" href = "{{ url('admin-panel/role/create') }}">Add New</a>
+                <a style="margin-bottom:10px;" class="btn btn-success" href = "{{ url('admin-panel/user/create') }}">Add New</a>
                 <hr/>
-                 <table class="table" id="roles-table">
+                 <table class="table" id="users-table">
                     <thead>
                         <tr>
-                            <th width="70%">Name</th>
-                            <th width="30%">Action</th>
+                            <th width="20%">Name</th>
+                            <th width="20%">Username</th>
+                            <th width="20%">Email</th>
+                            <th width="20%">Role</th>
+                            <th width="20%">Action</th>
                             
                         </tr>
                     </thead>
@@ -33,16 +36,20 @@
 
     <script type="text/javascript">
     $.fn.dataTable.ext.errMode = 'none';
-    $('#roles-table').DataTable({
+    $('#users-table').DataTable({
         processing: true,
         serverSide: true,
-        ajax : '{{ url("admin-panel/role/data") }}',
+        ajax : '{{ url("admin-panel/user/data") }}',
         columns: [
-            { data: 'name', name: 'name' },
+            { data: 'name', name: 'users.name' },
+            { data: 'username', name: 'username' },
+            { data: 'email', name: 'email' },
+            { data: 'role_name', name: 'roles.name' },
             { data: 'action', name: 'action' ,"searchable": false ,'orderable' : false},
         ]
     });
 
+    
     </script>
 
 @endsection

@@ -98,9 +98,15 @@ class RoleController extends Controller
     {
     	$titleAction = "Update ".$this->titleAction;
 
-    	$model = $this->model->find($id);
+        if($id != 1)
+        {   
+            $model = $this->model->find($id);
+            return view('admin.role._form' , compact('titleAction' ,'model'));
+        
+        }else{
 
-    	return view('admin.role._form' , compact('titleAction' ,'model'));
+            echo '<h2>Cannot Update Super Admin!</h2>';
+       }
     }
 
     public function postUpdate(Request $request , $id)
@@ -117,10 +123,19 @@ class RoleController extends Controller
     	$model = $this->model->find($id);
 
     	try
-    	{
-    		$model->delete();
-    		return redirect(url('admin-panel/role'))->withMessage('Data has been deleted!');
-    	}catch(\Exception $e){
+    	{  
+            if($id != 1)
+            {
+                $model->delete();
+                return redirect(url('admin-panel/role'))->withMessage('Data has been deleted!');
+        
+            }else{
+
+                echo '<h2>Cannot Delete Super Admin!</h2>';
+       
+            }
+        		
+        }catch(\Exception $e){
     		return redirect(url('admin-panel/role'))->withMessage('Data cannot bee deleted!');
     	
     	}

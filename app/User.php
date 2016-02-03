@@ -28,12 +28,36 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password'];
-
+    //protected $fillable = ['name', 'email', 'password'];
+    public $guarded = [];
     /**
      * The attributes excluded from the model's JSON form.
      *
      * @var array
      */
-    protected $hidden = ['password', 'remember_token'];
+    //protected $hidden = ['password', 'remember_token'];
+
+    public function rules($id)
+    
+    {
+
+        if(!empty($id))
+        {
+            $email = ',email,'.$id;
+            $username = ',username,'.$id;
+        }else{
+            $email = '';
+            $username = '';
+        }
+
+        return [
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users'.$email,
+            'username' => 'required|max:255|unique:users'.$username,
+            'password' => 'required|min:3',
+            'verify_password' => 'required|same:password',
+            
+        ];
+
+    }
 }

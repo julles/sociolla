@@ -32,6 +32,14 @@ class AllSeed extends Seeder
 	        	'controller' => 'Admin\RoleController',
 	        	'order' => 1,
 	        ]);
+
+	        \DB::table('menus')->insert([
+	        	'parent_id' => 1,
+	        	'title' => 'User',
+	        	'slug' => 'user',
+	        	'controller' => 'Admin\UserController',
+	        	'order' => 1,
+	        ]);
 	    //
 	    
 	    // roles
