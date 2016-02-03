@@ -49,6 +49,14 @@ class AllSeed extends Seeder
 	    		'id' => 1,
 	    		'name' => 'Super Admin',
 	    	]);
+	    	\DB::table('roles')->insert([
+	    		'id' => 2,
+	    		'name' => 'Admin',
+	    	]);
+	    	\DB::table('roles')->insert([
+	    		'id' => 3,
+	    		'name' => 'User',
+	    	]);
 
 	    //
     }
