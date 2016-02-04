@@ -4,28 +4,30 @@
 			<ul class="nav" id="side-menu">
 				
 				@foreach($parents as $parent)
-
-				<li>
-					<a href="#"><i class="{{ $parent->icon }}"></i>{{ $parent->title }}<span class="fa arrow"></span></a>
-					<ul class="nav nav-second-level collapse">
-					
+						
 					<?php
 					if(Auth::user()->role_id != 1)
 					{
-						$childs = Helper::injectModel('Role')->find(Auth::user()->role_id)->menus()->whereParentId($parent->id)->get(); 
+						$childs = Helper::injectModel('Role')->find(Auth::user()->role_id)->menus()->whereParentId($parent->id); 
 					}else{
-						$childs = $modelMenu->whereParentId($parent->id)->get();
+						$childs = $modelMenu->whereParentId($parent->id);
 					}
 					?>
 
-					@foreach($childs as $child)	
+					@if($childs->count() > 0 || Auth::user()->role_id == 1)
 						<li>
-							<a href="{{ url('admin-panel/'.$child->slug) }}">{{ $child->title }}</a>
+							<a href="#"><i class="{{ $parent->icon }}"></i>{{ $parent->title }}<span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level collapse">
+							
+							@foreach($childs->get() as $child)	
+								<li>
+									<a href="{{ url('admin-panel/'.$child->slug) }}">{{ $child->title }}</a>
+								</li>
+							@endforeach
+							</ul>
+							<!-- /nav-second-level -->
 						</li>
-					@endforeach
-					</ul>
-					<!-- /nav-second-level -->
-				</li>
+					@endif
 
 				@endforeach
 
