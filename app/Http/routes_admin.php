@@ -1,8 +1,10 @@
 <?php
+Route::controller('auth' , 'Admin\AuthController');
 
-Route::group(['prefix' => 'admin-panel'] , function(){
+Route::group(['prefix' => 'admin-panel' , 'middleware' => ['auth']] , function(){
 
 	Route::get('/' , 'Admin\DefaultController@index');
+
 
 	// routes dynamic from DB
 	if(\Schema::hasTable('menus'))
