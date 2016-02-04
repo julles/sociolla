@@ -38,7 +38,9 @@
 <body class="cbp-spmenu-push">
 	<div class="main-content">
 		<!--left-fixed -navigation-->
+		@if(Auth::check())
 			@include('admin.layouts.sidebar')
+		@endif
 		<!--left-fixed -navigation-->
 		<!-- header-starts -->
 		<div class="sticky-header header-section ">
@@ -48,7 +50,7 @@
 				<!--toggle button end-->
 				<!--logo -->
 				<div class="logo">
-					<a href="{{ asset(null) }}admin/index.html">
+					<a href="{{ url('admin-panel') }}">
 						<h1>SOCIOLLA</h1>
 						<span>AdminPanel</span>
 					</a>
@@ -65,19 +67,20 @@
 					<ul>
 						<li class="dropdown profile_details_drop">
 							<a href="{{ asset(null) }}admin/#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+							@if(Auth::check())	
 								<div class="profile_img">	
-									<span class="prfil-img"><img src="{{ asset(null) }}admin/images/a.png" alt=""> </span> 
 									<div class="user-name">
-										<p>Wikolia</p>
-										<span>Administrator</span>
+										<p>{{ \Auth::user()->name }}</p>
+										<span>{{ \Auth::user()->role->name }}</span>
 									</div>
 									<i class="fa fa-angle-down lnr"></i>
 									<i class="fa fa-angle-up lnr"></i>
 									<div class="clearfix"></div>	
 								</div>	
+							@endif
 							</a>
 							<ul class="dropdown-menu drp-mnu">
-								<li> <a href="{{ asset(null) }}admin/#"><i class="fa fa-sign-out"></i> Logout</a> </li>
+								<li> <a href="{{ url('auth/logout') }}"><i class="fa fa-sign-out"></i> Logout</a> </li>
 							</ul>
 						</li>
 					</ul>

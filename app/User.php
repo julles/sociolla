@@ -60,4 +60,10 @@ class User extends Model implements AuthenticatableContract,
         ];
 
     }
+
+    public function role()
+
+    {
+        return $this->belongsTo('App\Models\Role' , 'role_id');
+    }
 }

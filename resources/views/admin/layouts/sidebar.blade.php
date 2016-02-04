@@ -9,7 +9,16 @@
 					<a href="#"><i class="{{ $parent->icon }}"></i>{{ $parent->title }}<span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level collapse">
 					
-					@foreach($modelMenu->whereParentId($parent->id)->orderBy('order' , 'asc')->get() as $child)	
+					<?php
+					if(Auth::user()->role_id != 1)
+					{
+						$childs = Helper::injectModel('Role')->find(Auth::user()->role_id)->menus()->whereParentId($parent->id)->get(); 
+					}else{
+						$childs = $modelMenu->whereParentId($parent->id)->get();
+					}
+					?>
+
+					@foreach($childs as $child)	
 						<li>
 							<a href="{{ url('admin-panel/'.$child->slug) }}">{{ $child->title }}</a>
 						</li>

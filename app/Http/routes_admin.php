@@ -1,7 +1,7 @@
 <?php
 Route::controller('auth' , 'Admin\AuthController');
 
-Route::group(['prefix' => 'admin-panel' , 'middleware' => ['auth']] , function(){
+Route::group(['prefix' => 'admin-panel' , 'middleware' => ['auth','right']] , function(){
 
 	Route::get('/' , 'Admin\DefaultController@index');
 

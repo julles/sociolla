@@ -3,9 +3,9 @@
 <div id="page-wrapper">
     <div class="main-page">
         <div class="grid_3 grid_5 widget-shadow">
-            <h3 class="hdg">HOME</h3>
+            <h3 class="hdg">403</h3>
             <div class="well">
-           		<h3><b>Welcome</b></h3> {{ Auth::user()->name }}
+            You not authorized open this page
             </div>
         </div>
     </div>

@@ -30,4 +30,18 @@ class AuthController extends Controller
 
     	return redirect('admin-panel/');
     }
+
+    public function getAuthorized()
+
+    {
+        return view('admin.403');
+    }
+
+    public function getLogout()
+
+    {
+        \Auth::logout();
+
+        return redirect('auth/login');
+    }
 }
