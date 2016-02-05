@@ -12,14 +12,14 @@ use Datatables;
 
 class UserController extends Controller
 {
-    public function __construct()
+    public function __construct(User $model)
 
     {
         parent::__construct();
 
         $this->titleAction = 'User';
 
-        $this->model = new User;
+        $this->model = $model;
 
         $this->roles = Role::lists('name' , 'id')->toArray();
     }

@@ -16,14 +16,14 @@ class RoleController extends Controller
 
 	protected $titleAction;
 
-	public function __construct()
+	public function __construct(Role $model)
 
 	{
 		parent::__construct();
 
 		$this->titleAction = 'Role';
 
-		$this->model = new Role;
+		$this->model = $model;
 	}
 
     public function getIndex()
