@@ -19,7 +19,7 @@ class PageController extends Controller
 	{
 		parent::__construct();
 
-		$this->titleAction = 'Role';
+		$this->titleAction = 'Page';
 
 		$this->model = $model;
 	}
@@ -72,8 +72,9 @@ class PageController extends Controller
 	public function postCreate(Request $request)
 
     {
-    	$this->model->create($request->all());
-    	return redirect(url('admin-panel/manage-pages'))->withMessage('Data has been saved!');
+    	$save = $this->model->create($request->all());
+    	$this->model->changeSlug($save->id);
+        return redirect(url('admin-panel/manage-pages'))->withMessage('Data has been saved!');
     }
 
     public function getUpdate($id)
@@ -92,6 +93,7 @@ class PageController extends Controller
 
     {
     	$this->model->find($id)->update($request->all());
+        $this->model->changeSlug($id);
     	return redirect(url('admin-panel/manage-pages'))->withMessage('Data has been updated!');
     }
 

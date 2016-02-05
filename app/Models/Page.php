@@ -11,11 +11,8 @@ class Page extends Model
     public function rules($id="")
     
     {
-
-    	(!empty($id)) ? $title = ',title,'.$id : $title = '';
-
-    	return [
-    		'title' => 'required|unique:pages'.$title
+        return [
+    		'title' => 'required',
     	];
     }
 
@@ -25,5 +22,12 @@ class Page extends Model
 			->where('id' , '!=' , $id)
 			->lists('title' , 'id')
 			->toArray();
+    }
+
+    public function changeSlug($id)
+    {
+        $model = $this->find($id);
+        $slug = str_slug($model->id.' '.$model->title);
+        $model->update(['slug' => $slug]);
     }
 }
