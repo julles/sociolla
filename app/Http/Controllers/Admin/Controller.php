@@ -22,5 +22,6 @@ class Controller extends ControllerLaravel
 
         view()->share('modelMenu' , $this->model);
         view()->share('parents' , $this->parents);
+        view()->share('segment2' , \Request::segment(2));
     }
 }

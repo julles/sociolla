@@ -126,6 +126,45 @@
    <script src="{{ asset(null) }}admin/js/bootstrap.js"> </script>
    
    @yield('script')
+   <script type="text/javascript">
+   	CKEDITOR.replace( 'editor1' );
+   
+   function validate(id = '')
+   {
+	   			var $btn = $("#command");
+	            
+	            $btn.button('loading');
+	            // simulating a timeout
+	            setTimeout(function () {
+	                $btn.button('reset');
+	            }, 1000);
+	            
+	            $.ajax({
+	                type : 'post',
+	                url : '{{ url("admin-panel/$segment2/validate") }}',
+	                data : $("#form").serialize() + '&id='+id,
+	                success : function(data){
+	                    
+	                    if(data.status == 'notValidate')
+	                    {
+	                        str = '<ul>';
+	                        $.each(data.errors , function(key , value){
 
+	                            str += '<li>'+value+'</li>';
+
+	                        })
+	                        str += '</ul>';
+
+	                        $("#message").html('<div style="text-align:center;" class = "alert alert-danger">'+str+'</div>');
+	                        
+	                    }else{
+	                        $("#form").submit();
+	                    }
+
+	                },
+	    });
+   }
+
+   </script>
 </body>
 </html>

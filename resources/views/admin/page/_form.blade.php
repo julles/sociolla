@@ -62,7 +62,7 @@
                             </div>
 
                             <div class="col-sm-offset-2"> 
-                                <button class="btn btn-default" type="button" id = 'command'>{{ (!empty($model->id)) ? 'Update' : 'Save' }}</button> 
+                                <button class="btn btn-default" onclick = 'validate({{ $model->id }})' type="button" id = 'command'>{{ (!empty($model->id)) ? 'Update' : 'Save' }}</button> 
                             </div>
                         {!! Form::close() !!}
                     </div>
@@ -71,47 +71,4 @@
         </div>
     </div>
 </div>
-@endsection
-
-
-@section('script')
-
-    <script type="text/javascript">
-      CKEDITOR.replace( 'editor1' );
-    $(document).ready(function(){
-
-        $("#command").on('click' , function(){
-
-            $.ajax({
-                type : 'post',
-                url : '{{ url("admin-panel/manage-pages/validate") }}',
-                data : $("#form").serialize() + '&id={{$model->id}}',
-                success : function(data){
-                    
-                    if(data.status == 'notValidate')
-                    {
-                        str = '<ul>';
-                        $.each(data.errors , function(key , value){
-
-                            str = '<li>'+value+'</li>';
-
-                        })
-                        str += '</ul>';
-
-                        $("#message").html('<div style="text-align:center;" class = "alert alert-danger">'+str+'</div>');
-                        
-                    }else{
-                        $("#form").submit();
-                    }
-
-                },
-            });
-            
-
-        });
-
-    });
-
-    </script>
-
 @endsection
