@@ -25,7 +25,7 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-Ketikan Script berikut pada command prompt (path harus berada di root project)
+Ketikan Script berikut pada command prompt
 
 ```sh
 php artisan sociolla:install
