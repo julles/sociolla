@@ -18,4 +18,12 @@ class Page extends Model
     		'title' => 'required|unique:pages'.$title
     	];
     }
+
+    public function lists($id = "")
+    {
+    	return ['0' => 'This Parent'] + $this->whereParentId(0)
+			->where('id' , '!=' , $id)
+			->lists('title' , 'id')
+			->toArray();
+    }
 }

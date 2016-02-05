@@ -17,6 +17,7 @@
 <script src="{{ asset(null) }}admin/js/jquery-1.11.1.min.js"></script>
 <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
 <script src="{{ asset(null) }}admin/js/modernizr.custom.js"></script>
+<script src="{{ asset(null) }}admin/ckeditor/ckeditor.js"></script>
 <!--webfonts-->
 <link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
 <!--//webfonts--> 
@@ -123,6 +124,8 @@
 	<!--//scrolling js-->
 	<!-- Bootstrap Core JavaScript -->
    <script src="{{ asset(null) }}admin/js/bootstrap.js"> </script>
+   
    @yield('script')
+
 </body>
 </html>
