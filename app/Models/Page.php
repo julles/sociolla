@@ -12,7 +12,8 @@ class Page extends Model
     
     {
         return [
-    		'title' => 'required',
+    		'title' => 'required|max:255',
+            'sub_title' => 'max:255',
     	];
     }
 

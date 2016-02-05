@@ -18,7 +18,7 @@ class Controller extends ControllerLaravel
     {
         $this->model = new Menu;
 
-        $this->parents = $this->model->whereParentId(0)->orderBy('order' , 'asc')->get();
+        $this->parents = $this->model->whereParentId(0)->orderBy('order' , 'desc')->get();
 
         view()->share('modelMenu' , $this->model);
         view()->share('parents' , $this->parents);
