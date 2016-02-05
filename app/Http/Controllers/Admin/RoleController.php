@@ -43,11 +43,9 @@ class RoleController extends Controller
     		->addColumn('action' , function($model){
 
                 $access = '<a href = "'.url('admin-panel/role/right/'.$model->id).'" class = "btn btn-success btn-sm">Access<a/>';
-                $update = '<a href = "'.url('admin-panel/role/update/'.$model->id).'" class = "btn btn-default btn-sm">Update<a/>';
-    			$delete = '<a href = "'.url('admin-panel/role/delete/'.$model->id).'" class = "btn btn-danger btn-sm" onclick = "return confirm(\'are you sure want to delete this item ?\')">Delete</i><a/>';
-
+                
     			if($model->id != 1)
-    				return $access.' '.$update.' '.$delete;
+    				return $access.' '.\Helper::buttons($model->id);
     		})
     		->make(true);
 

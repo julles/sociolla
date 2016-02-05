@@ -41,11 +41,9 @@ class UserController extends Controller
         $tables = Datatables::of($data)
             ->addColumn('action' , function($model){
 
-                $update = '<a href = "'.url('admin-panel/user/update/'.$model->id).'" class = "btn btn-default btn-sm">Update<a/>';
-                $delete = '<a href = "'.url('admin-panel/user/delete/'.$model->id).'" class = "btn btn-danger btn-sm" onclick = "return confirm(\'are you sure want to delete this item ?\')">Delete</i><a/>';
-
+                
                 if($model->id != 1)
-                    return $update.' '.$delete;
+                    return \Helper::buttons($model->id);
             })
             ->make(true);
 
