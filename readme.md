@@ -9,6 +9,12 @@ Clone Source Code dengan mengetikan script berikut
 git clone https://github.com/julles/sociolla.git
 ```
 
+lalu masuk root project menggunakan cmd lalu ketikan script berikut
+
+```sh
+composer install
+```
+
 Setting Koneksi Database di file .env 
 contoh :
 
