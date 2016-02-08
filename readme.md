@@ -35,6 +35,9 @@ FINISH
 
 Cara Akses halaman admin : http://yoururl.dev/admin-panel
 
+Link Demo : http://reza.anggirahman.com/
+
+
 ### Username dan Password
 
 Username  | Password | Role
